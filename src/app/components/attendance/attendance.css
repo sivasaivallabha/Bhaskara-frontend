@@ -1,0 +1,193 @@
+/* 🌟 MAIN CONTAINER */
+.attendance-container {
+  padding: 120px 20px 40px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🧾 TITLE */
+.attendance-container h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+/* 🔥 FILTER BOX */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+
+  padding: 15px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* 🔽 DROPDOWNS */
+.filters select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 14px;
+  min-width: 130px;
+  transition: 0.3s;
+}
+
+.filters select:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+}
+
+/* 🔥 LOAD BUTTON */
+.filters button {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  transform: scale(1.05);
+}
+
+/* 🎓 STUDENT CARD */
+.card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 15px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* 👤 NAME */
+.card h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+/* 🆔 ROLL */
+.card p {
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+/* ATTENDANCE OPTIONS */
+.attendance-options {
+  display: flex;
+  gap: 12px;
+}
+
+/* HIDE RADIO */
+.attendance-options input {
+  display: none;
+}
+
+/* LABEL BASE */
+.attendance-options label {
+  padding: 8px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #334155;
+
+  transition: all 0.25s ease;
+}
+
+/* HOVER (SOFT) */
+.attendance-options label:hover {
+  background: #f1f5f9;
+}
+
+/* ✅ PRESENT SELECTED */
+.attendance-options input[value="Present"]:checked + span {
+  background: #22c55e;
+  color: white;
+  border-color: #22c55e;
+}
+
+/* ❌ ABSENT SELECTED */
+.attendance-options input[value="Absent"]:checked + span {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+/* SPAN STYLE */
+.attendance-options span {
+  display: inline-block;
+}
+
+/* 💾 SAVE BUTTON */
+.save-btn {
+  display: block;
+  margin: 30px auto;
+
+  padding: 14px 35px;
+  font-size: 16px;
+
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  color: white;
+
+  border: none;
+  border-radius: 30px;
+
+  cursor: pointer;
+  font-weight: 600;
+
+  box-shadow: 0 10px 25px rgba(34,197,94,0.3);
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  transform: scale(1.08);
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filters select,
+  .filters button {
+    width: 100%;
+  }
+
+  .attendance-options {
+    flex-direction: column;
+  }
+
+  .attendance-container h1 {
+    font-size: 24px;
+  }
+}

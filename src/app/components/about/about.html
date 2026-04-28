@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>{{ type | uppercase }}</h2>
+
+  <div class="cards">
+    <div class="card" *ngFor="let item of getData()">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.desc }}</p>
+    </div>
+  </div>
+</div> 

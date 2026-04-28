@@ -1,0 +1,245 @@
+/* 🔥 SECTION */
+.gallery-section {
+  padding: 120px 40px 60px;
+  text-align: center;
+
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #111827, #1e3a8a);
+  background-size: 400% 400%;
+  animation: bgMove 12s ease infinite;
+}
+
+/* TITLE */
+.title {
+  font-size: 42px;
+  color: white;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* 🔥 GRID (BIGGER CARDS) */
+.gallery-grid {
+  column-count: 3;   /* 🔥 magic */
+  column-gap: 25px;
+}
+
+.gallery-item {
+  break-inside: avoid; /* prevents cutting */
+  margin-bottom: 25px;
+}
+
+/* 🔥 CARD */
+.gallery-item {
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+
+  transition: 0.4s;
+
+  /* floating animation */
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+/* alternate floating delay */
+.gallery-item:nth-child(even) {
+  animation-delay: 1s;
+}
+
+/* 🔥 FLOAT ANIMATION */
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 🔥 IMAGE WRAPPER */
+.img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* 🔥 IMAGE (BIG + CLEAN) */
+.img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255,255,255,0.05); /* soft bg */
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: auto;              /* 🔥 IMPORTANT */
+  max-height: 400px;         /* 🔥 control size */
+  object-fit: contain;       /* 🔥 NO CROPPING */
+
+  border-radius: 10px;
+  transition: 0.6s ease;
+}
+
+/* 🔥 HOVER ZOOM */
+.gallery-item:hover img {
+  transform: scale(1.15);
+  filter: brightness(0.7);
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* 🔥 OVERLAY */
+.overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  opacity: 0;
+  transition: 0.3s;
+
+  pointer-events: none;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+/* 🔥 DELETE BUTTON (PREMIUM) */
+.delete-icon {
+  pointer-events: auto;
+
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+
+  color: white;
+  font-size: 14px;
+
+  padding: 8px 10px;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* hover */
+.delete-icon:hover {
+  background: red;
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* 🔥 UPLOAD BOX */
+.upload-box {
+  margin-top: 120px;
+  text-align: center;
+
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+
+  padding: 25px;
+  border-radius: 15px;
+
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* INPUT */
+.upload-box input {
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+.upload-box button {
+  padding: 12px 25px;
+  background: linear-gradient(to right, orange, #ff5722);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-box button:hover {
+  transform: scale(1.08);
+}
+
+/* 🔥 FULL SCREEN MODAL */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.95);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+
+  animation: fadeIn 0.3s ease;
+}
+
+/* FULL IMAGE */
+.full-image {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+
+  border-radius: 10px;
+  animation: zoomIn 0.4s ease;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+}
+
+/* 🔥 ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 80% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .img-wrapper img {
+    height: auto;
+  }
+}

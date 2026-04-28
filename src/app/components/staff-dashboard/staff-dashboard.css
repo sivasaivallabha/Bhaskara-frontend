@@ -1,0 +1,163 @@
+.staff-container {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* TITLE */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* FILTERS */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters select,
+.filters button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.card {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}.card-header h2 {
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.card-header span {
+  background: #2563eb;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.info {
+  color: gray;
+  margin-bottom: 10px;
+}
+
+/* SUBJECT */
+.subject-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.subject-name {
+  font-weight: 500;
+}
+
+/* INPUT */
+input {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100px;
+}
+
+/* BUTTON */
+.save-btn {
+  margin-top: 10px;
+  background: #2563eb;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .subject-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.attendance-btn {
+  background: #16a34a;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  margin: 0 auto 20px;
+  font-weight: 600;
+}
+.count {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #2563eb;
+}
+
+/* 🔍 SEARCH INPUT */
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 320px;
+  max-width: 90%;
+
+  padding: 12px 16px;
+  border-radius: 25px;
+
+  border: 1px solid #ddd;
+  outline: none;
+
+  font-size: 14px;
+  background: white;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+/* ✨ FOCUS EFFECT */
+.search-box input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
+}
+
+/* 🔥 PLACEHOLDER STYLE */
+.search-box input::placeholder {
+  color: #94a3b8;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .search-box input {
+    width: 100%;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+}

@@ -1,0 +1,347 @@
+@if (announcement) {
+
+<div class="announcement-bar">
+  <div class="scroll-text">
+    {{ announcement }}
+  </div>
+</div>
+
+}
+
+<div class="slider">
+
+  <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide">
+
+    <!-- Background -->
+    <div class="bg" [ngStyle]="{
+    'background-image': 'url(' + slide.image + ')',
+    'background-size': slide.size,
+    'background-position': slide.position
+  }">
+    </div>
+
+    <!-- Overlay -->
+    <div class="content">
+      <h1>{{ slide.title }}</h1>
+      <p>{{ slide.subtitle }}</p>
+
+      <!-- Extra details for toppers -->
+      <div class="topper-box" *ngIf="slide.title.includes('Topper')">
+        <p>🏫 Bhaskara Institutions</p>
+        <p>📊 Excellent Academic Performance</p>
+        <p>🎯 100% Success Rate</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Arrows -->
+  <button class="prev" (click)="prevSlide()">❮</button>
+  <button class="next" (click)="nextSlide()">❯</button>
+
+</div>
+
+<section class="about-section">
+
+  <div class="card">
+    <div class="card-title">Our Vision</div>
+    <p>
+      To be a leading institution in education that nurtures knowledge,
+      discipline, and innovation. We aim to empower students with strong
+      academic foundations and life skills to succeed in a competitive world.
+    </p>
+    <div class="line"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Our Mission</div>
+    <p>
+      Our mission is to provide quality education through experienced faculty,
+      modern teaching methods, and a student-focused approach. We strive to
+      build confident individuals ready to face future challenges.
+    </p>
+    <div class="line"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Our History</div>
+    <p>
+      Bhaskara Junior College was established with a vision to provide
+      excellence in education. Over the years, it has grown into a trusted
+      institution, shaping thousands of students and building strong academic
+      results.
+    </p>
+    <div class="line"></div>
+  </div>
+
+</section>
+
+<section class="features-section">
+
+  <p class="sub-title">WHAT WE OFFER</p>
+  <h2 class="main-title">Features & Services</h2>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="icon">🏫</div>
+      <h3>Campus Learning</h3>
+      <p>Modern classrooms and facilities for a better learning experience.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">💻</div>
+      <h3>Online Classes</h3>
+      <p>Flexible learning options accessible from anywhere.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">👨‍🏫</div>
+      <h3>Experienced Faculty</h3>
+      <p>Learn from highly qualified and experienced teachers.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="icon">❤️</div>
+      <h3>Student Support</h3>
+      <p>Complete academic and personal guidance for students.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="impact-section" class="contact-section">
+
+  <p class="sub-title">OUR IMPACT</p>
+  <h2 class="main-title">Status & Highlights</h2>
+
+  <div class="status-badge">
+    ● Open Now · Online + In-Person Classes Available
+  </div>
+
+  <div class="impact-grid">
+
+    <div class="impact-card">
+      <div class="icon">👨‍🎓</div>
+      <h2>1200+</h2>
+      <p>Students</p>
+    </div>
+
+    <div class="impact-card" (click)="openCourses()">
+      <div class="icon">📘</div>
+      <h2>15+</h2>
+      <p>Courses</p>
+    </div>
+    <div class="impact-card">
+      <div class="icon">🎖️</div>
+      <h2>50+</h2>
+      <p>Expert Faculty</p>
+    </div>
+
+    <div class="impact-card">
+      <div class="icon">🌍</div>
+      <h2>15+</h2>
+      <p>Years of Excellence</p>
+    </div>
+
+  </div>
+
+</section>
+<!-- Modal -->
+<div class="modal" *ngIf="showCourses">
+  <div class="modal-content">
+
+    <span class="close" (click)="closeCourses()">✖</span>
+
+    <h2>Our Courses</h2>
+
+    <ul>
+      <li>MPC with IIT-JEE</li>
+      <li>MPC with JEE-MAINS</li>
+      <li>MPC with AP-EAPCET</li>
+      <li>BiPC with NEET</li>
+      <li>MEC-CPT</li>
+    </ul>
+
+    <button class="apply-btn" (click)="openForm()">Apply Now</button>
+
+  </div>
+</div>
+
+<!-- Apply Form Modal -->
+<div class="modal" *ngIf="showForm">
+  <div class="modal-content form-box">
+
+    <span class="close" (click)="closeForm()">✖</span>
+
+    <h2>Apply for Course</h2>
+
+    <form (ngSubmit)="submitForm()">
+
+      <div class="form-row">
+        <input type="text" name="name" [(ngModel)]="formData.name" placeholder="Full Name" required>
+        <input type="text" name="phone" [(ngModel)]="formData.phone" placeholder="Phone Number" required>
+      </div>
+
+      <div class="form-row">
+        <input type="email" name="email" [(ngModel)]="formData.email" placeholder="Email" required>
+        <input type="text" name="city" [(ngModel)]="formData.city" placeholder="City" required>
+      </div>
+
+      <div class="form-row">
+        <select name="course" [(ngModel)]="formData.course">
+          <option value="">Select Course</option>
+          <option>MPC - IIT JEE</option>
+          <option>MPC - JEE MAINS</option>
+          <option>MPC - EAPCET</option>
+          <option>BiPC - NEET</option>
+          <option>MEC - CPT</option>
+        </select>
+
+        <input type="text" name="marks" [(ngModel)]="formData.marks" placeholder="Marks %" required>
+      </div>
+
+      <textarea name="message" [(ngModel)]="formData.message" placeholder="Message"></textarea>
+
+      <button type="submit" class="submit-btn">Submit Application</button>
+
+    </form>
+
+  </div>
+</div>
+
+<div class="middle">
+  <p class="sub-title">ADMISSIONS OPEN</p>
+  <h2 class="main-title">You Can Book your seat by applying here</h2>
+</div>
+<section class="cta-section">
+
+
+  <h1>Join Bhaskara Educational Institutions Today</h1>
+
+  <p>
+    Take the first step toward a successful future. Apply now and become part
+    of our thriving academic community.
+  </p>
+
+  <button class="cta-btn" (click)="openForm()">
+    Apply Now →
+  </button>
+
+</section>
+
+
+<section id="contact-section" class="contact-section">
+
+  <p class="sub-title">GET IN TOUCH</p>
+  <h2 class="main-title">Contact & Information</h2>
+
+  <div class="contact-container">
+
+    <!-- LEFT SIDE -->
+    <div class="contact-left">
+
+      <div class="contact-card">
+        <div class="icon">📍</div>
+        <div>
+          <h4>LOCATION</h4>
+          <p>Roypeta, Narsapuram, Andhra Pradesh</p>
+        </div>
+      </div>
+
+      <div class="contact-card highlight">
+        <div class="icon">📞</div>
+        <div>
+          <h4>PHONE</h4>
+          <p>+91 94939 43737</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">✉️</div>
+        <div>
+          <h4>EMAIL</h4>
+          <p>bjcnsp@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="links">
+        <button>Official Website</button>
+        <button>Google Sites Page</button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE (MAP) -->
+    <div class="contact-right">
+      <iframe src="https://www.google.com/maps?q=Narsapuram,Andhra Pradesh&output=embed" width="100%" height="100%"
+        style="border:0;" loading="lazy">
+      </iframe>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="review-form">
+
+  <h2>Add Your Review</h2>
+
+  <input [(ngModel)]="newReview.name" placeholder="Your Name">
+  <input [(ngModel)]="newReview.course" placeholder="Course">
+
+  <!-- ⭐ STAR RATING -->
+  <div class="stars-input">
+    <span *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [class.active]="star <= newReview.rating">
+      ⭐
+    </span>
+  </div>
+
+  <!-- 📸 FILE UPLOAD -->
+  <input type="file" (change)="onFileSelect($event)">
+
+  <textarea [(ngModel)]="newReview.comment" placeholder="Write your review"></textarea>
+
+  <button (click)="addReview()">Submit Review</button>
+
+</div>
+
+
+<section class="review-section">
+
+  <p class="sub-title">STUDENT REVIEWS</p>
+  <h2 class="main-title">What Our Students Say</h2>
+
+  <div class="review-container">
+
+    <div class="review-card" *ngFor="let review of reviews">
+
+      <div class="top">
+        <img [src]="'http://localhost:5000/uploads/' + review.image" alt="student">
+        <div>
+          <h3>{{ review.name }}</h3>
+          <p class="course">{{ review.course }}</p>
+        </div>
+      </div>
+
+      <div class="stars">
+        <span *ngFor="let star of [1,2,3,4,5]">
+          {{ star <= review.rating ? '⭐' : '☆' }} </span>
+      </div>
+
+      <p class="comment">
+        "{{ review.comment }}"
+      </p>
+
+      @if (isAdmin) {
+      <button (click)="deleteReview(review._id)">
+        Delete
+      </button>
+      }
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,77 @@
+<div class="header-container">
+
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="left">
+      📞 +91 94939 43737 | ✉️ bjcnsp@gmail.com
+    </div>
+
+    <!-- HAMBURGER -->
+    <div class="menu-icon" (click)="toggleMenu()">
+      ☰
+    </div>
+
+    <nav [class.active]="menuOpen">
+      <a routerLink=""  (click)="closeMenu()">Home</a>
+
+      <div class="dropdown">
+        <a class="dropbtn">About ▾</a>
+        <div class="dropdown-content">
+          <a (click)="openModal('about'); closeMenu()">About Us</a>
+          <a (click)="openModal('head1'); closeMenu()">Head1</a>
+          <a (click)="openModal('head2'); closeMenu()">Head2</a>
+
+        </div>
+      </div>
+
+      <a routerLink="/gallery" (click)="closeMenu()">Photo Gallery</a>
+      <a routerLink="/achievements" (click)="closeMenu()">Achievements</a>
+      <a (click)="goToHighlights()" (click)="closeMenu()">Highlights</a>
+      <a (click)="goToContact()" (click)="closeMenu()">Contact</a>
+      @if (!isLoggedIn) {
+      <a routerLink="/login" (click)="closeMenu()">Login</a>
+      }
+      @if (isLoggedIn) {
+      <a (click)="logout()" (click)="closeMenu()">Logout</a>
+      }
+
+      @if (isAdmin) {
+      <a routerLink="/register" (click)="closeMenu()">Create User</a>
+      }
+    </nav>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/name.png">
+    </div>
+    <div class="logo">
+      <img src="assets/quote.jpeg">
+    </div>
+  </header>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+
+    <span class="close" (click)="closeModal()">❌</span>
+
+    <h2 class="modal-title">
+      {{ modalType | uppercase }}
+    </h2>
+
+    <div class="card-container">
+      <div class="card" *ngFor="let item of getModalData()">
+        <div class="icon">🏆</div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.desc }}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+

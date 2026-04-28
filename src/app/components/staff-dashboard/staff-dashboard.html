@@ -1,0 +1,75 @@
+<div class="staff-container">
+
+  <h1>👨‍🏫 Staff Dashboard</h1>
+  <button class="attendance-btn" routerLink="/attendance">
+  📅 Mark Attendance
+</button>
+
+<h3 class="count">👨‍🎓 Total: {{ students.length }}</h3>
+
+  <!-- 🔍 FILTERS -->
+  <div class="filters">
+
+    <select [(ngModel)]="filters.class">
+      <option value="">Select Class</option>
+      <option *ngFor="let c of classes" [value]="c">{{ c }}</option>
+    </select>
+
+    <select [(ngModel)]="filters.section">
+      <option value="">Select Section</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+
+    <button (click)="getStudents()">Load Students</button>
+
+  </div>
+  <div class="search-box">
+  <input 
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="🔍 Search student..."
+    (input)="filterStudents()"
+  >
+</div>
+
+  <!-- 👨‍🎓 STUDENTS -->
+  <div *ngFor="let s of students" class="card">
+
+    <!-- HEADER -->
+    <div class="card-header">
+      <h2>{{ s.name }}</h2>
+      <span>{{ s.rollNo }}</span>
+    </div>
+
+    <p class="info">
+      Class: {{ s.class }} | Section: {{ s.section }}
+    </p>
+
+    <!-- 📚 SUBJECT MARKS -->
+    <div class="section">
+
+      <h3>📚 Performance Entry</h3>
+
+      <div *ngFor="let sub of s.subjects; let i = index" class="subject-row">
+
+        <span class="subject-name">{{ sub.name }}</span>
+
+        <input 
+          type="number" 
+          [(ngModel)]="sub.marks"
+          placeholder="Enter marks"
+        >
+
+      </div>
+
+      <button class="save-btn" (click)="updateMarks(s)">
+        Save Marks
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

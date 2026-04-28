@@ -1,0 +1,19 @@
+<div class="register-container">
+
+  <div class="register-box">
+
+    <h2>Create User</h2>
+
+    <input [(ngModel)]="userData.email" placeholder="Email">
+    <input [(ngModel)]="userData.password" type="password" placeholder="Password">
+
+    <select [(ngModel)]="userData.role">
+      <option value="student">Student</option>
+      <option value="staff">Staff</option>
+    </select>
+
+    <button (click)="register()">Create</button>
+
+  </div>
+
+</div>

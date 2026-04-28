@@ -1,0 +1,317 @@
+.dashboard {
+  padding: 100px 20px;
+  min-height: 100vh;
+
+  /* 🔥 GRADIENT BACKGROUND */
+  background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* TITLE */
+.dashboard h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* 🔥 GRID */
+.top-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* 🔥 GLASS CARD */
+.card, .fees {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+
+  border-radius: 16px;
+  padding: 25px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover, .fees:hover {
+  transform: translateY(-5px);
+}
+
+/* PROFILE GRID */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.profile-grid p {
+  font-size: 15px;
+  color: #334155;
+}
+
+/* 🔥 FEES */
+.fees h2 {
+  margin-bottom: 15px;
+}
+
+.fee-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fee-card {
+  padding: 12px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.total {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.paid {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.due {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* 📚 SUBJECTS */
+.marks {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+
+  padding: 25px;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.marks h2 {
+  margin-bottom: 20px;
+}
+
+/* SUBJECT ROW */
+.subject-row {
+  margin-bottom: 15px;
+}
+
+/* SUBJECT HEADER */
+.subject-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* 🔥 PROGRESS BAR */
+.progress {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  border-radius: 10px;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .top-section {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.student-photo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.student-photo img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 4px solid #2563eb;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.no-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ddd;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 🌟 MAIN CONTAINER */
+.section-block {
+  background: #f5f7fb;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 📅 TITLE */
+.section-block h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+/* 📅 MONTH INPUT */
+.section-block input[type="month"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* 📊 STATS CARDS */
+.attendance-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+/* EACH CARD */
+.attendance-stats div {
+  flex: 1;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* LABEL */
+.attendance-stats p {
+  margin: 0;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+/* PERCENTAGE */
+.attendance-stats h2 {
+  margin-top: 8px;
+  font-size: 28px;
+  color: #2c3e50;
+}
+
+/* 🎯 COLORS FOR DIFFERENT CARDS */
+.attendance-stats div:nth-child(1) h2 {
+  color: #27ae60; /* green */
+}
+
+.attendance-stats div:nth-child(2) h2 {
+  color: #2980b9; /* blue */
+}
+
+/* 📋 LIST CONTAINER */
+.attendance-list {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* EACH ROW */
+.attendance-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  align-items: center;
+}
+
+/* LAST ROW REMOVE BORDER */
+.attendance-row:last-child {
+  border-bottom: none;
+}
+
+/* DATE */
+.attendance-row span:first-child {
+  color: #34495e;
+  font-weight: 500;
+}
+
+/* PRESENT/TOTAL */
+.attendance-row span:nth-child(2) {
+  color: #7f8c8d;
+}
+
+/* PERCENT */
+.attendance-row .percent {
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* 🎯 DYNAMIC COLORS BASED ON PERFORMANCE */
+.attendance-row .percent {
+  background: #eafaf1;
+  color: #27ae60;
+}
+
+/* OPTIONAL: LOW ATTENDANCE */
+.attendance-row.low .percent {
+  background: #fdecea;
+  color: #e74c3c;
+}
+
+/* OPTIONAL: MEDIUM */
+.attendance-row.medium .percent {
+  background: #fff4e5;
+  color: #f39c12;
+}
+
+/* 🧊 SCROLLBAR STYLE */
+.attendance-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.attendance-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+.logout-btn {
+  display: block;
+  margin-left: auto;   /* pushes button to the right */
+  padding: 10px 16px;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.logout-btn:hover {
+  background-color: #e60000;
+}

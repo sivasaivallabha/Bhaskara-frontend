@@ -1,0 +1,343 @@
+<div class="admin-container">
+
+  <h1>👨‍💼 Admin Dashboard</h1>
+  <!-- <button class="logout-btn" (click)="logout()">
+    🚪 Logout
+  </button> -->
+
+  <div class="card">
+    <h2>📢 Announcement</h2>
+
+    <input [(ngModel)]="announcementText" placeholder="Enter scrolling headline">
+
+    <button (click)="saveAnnouncement()">
+      Save Announcement
+    </button>
+  </div>
+
+  <div class="excel-buttons">
+
+    <button class="excel-btn basic" (click)="downloadBasic()">
+      📄 Download Basic Details
+    </button>
+
+    <button class="excel-btn fees" (click)="downloadFees()">
+      💰 Download Fee Details
+    </button>
+
+  </div>
+  <!-- 📊 EXAM FILTER -->
+  <select [(ngModel)]="selectedExamName">
+    <option value="">Select Exam</option>
+
+    @for (e of examList; track e) {
+    <option [value]="e">{{ e }}</option>
+    }
+  </select>
+
+  <button class="excel-btn fees " (click)="downloadExamExcel()">
+    📥 Download Exam Report
+  </button>
+
+  <!-- 🔍 SEARCH -->
+  <div class="search-box">
+    <input type="text" [(ngModel)]="searchText" placeholder="🔍 Search..." (input)="getStudents()">
+  </div>
+
+  <!-- 🔥 FILTERS -->
+  <div class="filters">
+    <select [(ngModel)]="filters.class">
+      <option value="">All Classes</option>
+      <option *ngFor="let c of classes" [value]="c">{{ c }}</option>
+    </select>
+
+    <select [(ngModel)]="filters.section">
+      <option value="">All Sections</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+
+    <select [(ngModel)]="filters.group">
+      <option value="">All Groups</option>
+      <option *ngFor="let g of groups" [value]="g">{{ g }}</option>
+    </select>
+
+    <button (click)="applyFilters()">Apply</button>
+  </div>
+
+  <!-- 📝 CREATE EXAM -->
+  <div class="card">
+    <h2>📝 Create Exam</h2>
+
+    <input [(ngModel)]="newExam.name" placeholder="Exam Name">
+
+    <select [(ngModel)]="newExam.class">
+      <option *ngFor="let c of classes" [value]="c">{{ c }}</option>
+    </select>
+
+    <select [(ngModel)]="newExam.section">
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+
+    <select [(ngModel)]="newExam.group">
+      <option *ngFor="let g of groups" [value]="g">{{ g }}</option>
+    </select>
+
+    <div *ngFor="let sub of newExam.subjects">
+      <input [(ngModel)]="sub.name" placeholder="Subject">
+      <input [(ngModel)]="sub.maxMarks" placeholder="Max Marks">
+    </div>
+
+    <button (click)="addExamSubject()">+ Add Subject</button>
+    <button (click)="createExam()">Create Exam</button>
+  </div>
+
+  <!-- 🎯 SELECT EXAM -->
+  <div class="card">
+    <h2>📊 Select Exam</h2>
+
+    <select [(ngModel)]="selectedExam">
+      <option [ngValue]="null">Select Exam</option>
+      <option *ngFor="let e of exams" [ngValue]="e">
+        {{ e.name }} ({{ e.group }} - {{ e.section }})
+      </option>
+    </select>
+  </div>
+  <button class="save-all" (click)="saveAllMarks()">
+    💾 Save All Marks
+  </button>
+
+  <!-- 👨‍🎓 STUDENTS -->
+  <div *ngFor="let s of students" class="card">
+
+    <h2>{{ s.name }}</h2>
+    <p>{{ s.rollNo }}</p>
+
+    <!-- 🧪 MARK ENTRY -->
+    <div *ngIf="selectedExam">
+
+      <h3>🧪 Enter Marks ({{ selectedExam.name }})</h3>
+
+      <div *ngFor="let sub of selectedExam.subjects; let i = index">
+
+        <span>{{ sub.name }} ({{ sub.maxMarks }})</span>
+
+        <input type="number" [(ngModel)]="s.tempMarks[i]" placeholder="Marks">
+
+      </div>
+
+      <button (click)="saveMarks(s)">Save Marks</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="admin-container">
+
+  <h1>👨‍💼 Student List </h1>
+
+
+
+
+
+
+
+
+  <!-- 🔥 STUDENTS -->
+  <div *ngFor="let s of students" class="card">
+
+    <!-- 🔥 HEADER -->
+    <div class="card-header">
+
+      <!-- LEFT -->
+      <h2>{{ s.name || '🆕 New Student' }}</h2>
+
+      <!-- CENTER PHOTO -->
+      <div class="photo-box">
+
+        @if (s.photo) {
+        <img [src]="'http://localhost:5000/uploads/' + s.photo">
+        } @else {
+        <div class="no-photo">No Photo</div>
+        }
+
+        <input type="file" (change)="uploadPhoto($event, s)">
+
+      </div>
+
+      <!-- RIGHT -->
+      <span>{{ s.rollNo || 'Pending Roll No' }}</span>
+
+    </div>
+
+    <p class="email">📧 {{ s.userId?.email }}</p>
+
+    <!-- 👤 PROFILE -->
+    <div class="section">
+      <h3>👤 Student Details</h3>
+
+      <div class="grid">
+        <div>
+          <label>Name</label>
+          <input [(ngModel)]="s.name">
+        </div>
+
+        <div>
+          <label>Roll No</label>
+          <input [(ngModel)]="s.rollNo">
+        </div>
+
+        <div>
+          <label>Father Name</label>
+          <input [(ngModel)]="s.fatherName">
+        </div>
+
+        <div>
+          <label>Phone</label>
+          <input [(ngModel)]="s.fatherPhone">
+        </div>
+        <div>
+          <label>Type</label>
+          <select [(ngModel)]="s.institutionType">
+            <option value="school">School</option>
+            <option value="college">College</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Institution Name</label>
+          <input [(ngModel)]="s.institutionName">
+        </div>
+
+        <div>
+          <label>Class</label>
+          <select [(ngModel)]="s.class">
+            <option value="">Select Class</option>
+            <option *ngFor="let c of classes" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Section</label>
+          <select [(ngModel)]="s.section">
+            <option value="">Select</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Group</label>
+          <select [(ngModel)]="s.group">
+            <option value="">Select</option>
+            <option *ngFor="let g of groups" [value]="g">{{ g }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Attendance (%)</label>
+          <input [(ngModel)]="s.attendance" type="number">
+        </div>
+      </div>
+    </div>
+    <div class="section">
+  <h3>🔐 Reset Password</h3>
+
+  <div class="password-box">
+
+    <input
+      [type]="showPasswordMap[s._id] ? 'text' : 'password'"
+      [(ngModel)]="resetPasswordMap[s._id]"
+      placeholder="Enter new password"
+    >
+
+    <span class="toggle-eye"
+          (click)="showPasswordMap[s._id] = !showPasswordMap[s._id]">
+      {{ showPasswordMap[s._id] ? '🙈' : '👁' }}
+    </span>
+
+  </div>
+
+  <button class="reset-btn" (click)="resetPassword(s)">
+    Reset Password
+  </button>
+</div>
+    <!-- 📚 SUBJECTS -->
+    <div class="section">
+      <h3>📚 Subjects</h3>
+
+      <div *ngFor="let sub of s.subjects; let i = index" class="subject-row">
+        <select [(ngModel)]="sub.name">
+          <option *ngFor="let opt of subjectOptions" [value]="opt">{{ opt }}</option>
+        </select>
+
+        <input [(ngModel)]="sub.marks" type="number">
+
+        <button (click)="removeSubject(s, i)">❌</button>
+      </div>
+
+      <button class="add-btn" (click)="addSubject(s)">+ Add Subject</button>
+    </div>
+
+    <!-- 💰 FEES -->
+    <div class="section">
+      <h3>💰 Fee Details</h3>
+
+      <div class="grid">
+
+        <div>
+          <label>School Fee</label>
+          <input [(ngModel)]="s.fees.schoolFee" (input)="calculateFees(s)">
+        </div>
+
+        <div>
+          <label>Bus Fee</label>
+          <input [(ngModel)]="s.fees.busFee" (input)="calculateFees(s)">
+        </div>
+
+        <div>
+          <label>Concession 1</label>
+          <input [(ngModel)]="s.fees.concession1" (input)="calculateFees(s)">
+        </div>
+
+        <div>
+          <label>Concession 2</label>
+          <input [(ngModel)]="s.fees.concession2" (input)="calculateFees(s)">
+        </div>
+
+        <div>
+          <label>Fees Paid</label>
+          <input [(ngModel)]="s.feesPaid" (input)="calculateFees(s)">
+        </div>
+
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="fee-summary">
+        <div class="box total">Total: ₹{{ s.totalFees }}</div>
+        <div class="box paid">Paid: ₹{{ s.feesPaid || 0 }}</div>
+        <div class="box due">Due: ₹{{ s.due }}</div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="update" (click)="updateStudent(s)">Update</button>
+      <button class="delete" (click)="deleteStudent(s._id)">Delete</button>
+    </div>
+
+  </div>
+
+</div>

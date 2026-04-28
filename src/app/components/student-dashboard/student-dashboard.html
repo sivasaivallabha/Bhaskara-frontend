@@ -1,0 +1,177 @@
+
+@if (student) {
+
+<div class="dashboard">
+
+  <h1>🎓 Student Dashboard</h1>
+  <button class="logout-btn" (click)="logout()">
+    🚪 Logout
+  </button>
+  <!-- 🔥 TOP -->
+  <div class="top-section">
+
+    <!-- 👤 PROFILE -->
+    <div class="card">
+
+      <div class="student-photo">
+
+        @if (student.photo) {
+        <img [src]="'http://localhost:5000/uploads/' + student.photo">
+        } @else {
+        <div class="no-photo">No Photo</div>
+        }
+
+      </div>
+
+      <h2>👤 Profile</h2>
+
+      <div class="profile-grid">
+        <p><b>Name:</b> {{ student.name }}</p>
+        <p><b>Roll:</b> {{ student.rollNo }}</p>
+        <p><b>Father:</b> {{ student.fatherName }}</p>
+        <p><b>Fathers Phone:</b> {{ student.fatherPhone ? ('******' + student.fatherPhone.slice(-4)) : '' }}</p>
+        <p><b>Class:</b> {{ student.class }}</p>
+        <p><b>Section:</b> {{ student.section }}</p>
+        <p><b>Group:</b> {{ student.group }}</p>
+        <p><b>Attendance:</b> {{ student.attendance }}%</p>
+
+        <!-- 🏫 NEW FIELDS -->
+        <p><b>School or College:</b> {{ student.institutionType }}</p>
+
+      </div>
+    </div>
+
+    <!-- 💰 FEES -->
+    <div class="fees">
+      <h2>💰 Fee Summary</h2>
+
+      <div class="fee-box">
+        <div class="fee-card total">
+          <span>Total</span>
+          <span>₹{{ student.totalFees }}</span>
+        </div>
+
+        <div class="fee-card paid">
+          <span>Paid</span>
+          <span>₹{{ student.feesPaid }}</span>
+        </div>
+
+        <div class="fee-card due">
+          <span>Due</span>
+          <span>₹{{ student.due }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 📚 SUBJECTS -->
+  <div class="marks">
+    <h2>📚 Subjects Performance</h2>
+
+    @for (sub of student.subjects; track sub) {
+
+    <div class="subject-row">
+
+      <div class="subject-header">
+        <span>{{ sub.name }}</span>
+        <span><b>{{ sub.marks }}</b></span>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" [style.width.%]="sub.marks"></div>
+      </div>
+
+    </div>
+
+    }
+
+  </div>
+
+</div>
+
+
+<div class="section-block">
+
+  <h2>📊 Exam Results</h2>
+
+  @for (exam of student.exams; track exam._id) {
+
+    <div class="exam-inline">
+
+      <h3>{{ exam.examName }}</h3>
+
+      @for (sub of exam.subjects; track sub._id) {
+
+        <div class="row">
+
+          <span>{{ sub.name }}</span>
+
+          <span>
+            {{ sub.marksObtained }}/{{ sub.maxMarks }}
+          </span>
+
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar"
+               [style.width.%]="(sub.marksObtained / sub.maxMarks) * 100">
+          </div>
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+</div>
+
+
+<div class="section-block">
+
+  <h2>📅 Attendance</h2>
+
+  <!-- MONTH SELECT -->
+  <input type="month"
+         [(ngModel)]="selectedMonth"
+         (change)="calculateAttendance()">
+
+  <!-- STATS -->
+  <div class="attendance-stats">
+
+    <div>
+      <p>Monthly</p>
+      <h2>{{ monthlyPercentage }}%</h2>
+    </div>
+
+    <div>
+      <p>Total</p>
+      <h2>{{ totalPercentage }}%</h2>
+    </div>
+
+  </div>
+
+  <!-- DAILY TIMELINE -->
+  <div class="attendance-list">
+
+    @for (d of monthlyAttendance; track d.date) {
+
+      <div class="attendance-row">
+
+        <span>{{ d.date }}</span>
+
+        <span>{{ d.present }}/{{ d.total }}</span>
+
+        <span class="percent">
+          {{ d.percentage }}%
+        </span>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
+}

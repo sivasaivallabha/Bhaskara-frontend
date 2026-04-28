@@ -1,0 +1,69 @@
+<div class="attendance-container">
+
+  <h1>📅 Attendance Management</h1>
+
+  <!-- 🔥 FILTERS -->
+  <div class="filters">
+
+    <select [(ngModel)]="filters.class">
+      <option value="">Class</option>
+      @for (c of classes; track c) {
+      <option [value]="c">{{ c }}</option>
+      }
+    </select>
+
+    <select [(ngModel)]="filters.section">
+      <option value="">Section</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+
+    <select [(ngModel)]="filters.group">
+      <option value="">Group</option>
+      @for (g of groups; track g) {
+      <option [value]="g">{{ g }}</option>
+      }
+    </select>
+
+    <!-- PERIOD -->
+    <select [(ngModel)]="selectedPeriod">
+      @for (p of [1,2,3,4,5,6,7]; track p) {
+      <option [value]="p">Period {{ p }}</option>
+      }
+    </select>
+
+    <button (click)="getStudents()">Load Students</button>
+
+  </div>
+
+  <!-- 👨‍🎓 STUDENTS -->
+  @for (s of students; track s._id) {
+  <div class="card">
+
+    <h2>{{ s.name }}</h2>
+    <p>{{ s.rollNo }}</p>
+
+    <div class="attendance-options">
+
+      <label>
+        <input type="radio" [name]="'attendance_' + s._id" [(ngModel)]="s.attendanceStatus" value="Present">
+        <span>✅ Present</span>
+      </label>
+
+      <label>
+        <input type="radio" [name]="'attendance_' + s._id" [(ngModel)]="s.attendanceStatus" value="Absent">
+        <span>❌ Absent</span>
+      </label>
+
+    </div>
+
+  </div>
+  }
+
+  <!-- SAVE -->
+  <button class="save-btn" (click)="saveAttendance()">
+    💾 Save Attendance
+  </button>
+
+</div>

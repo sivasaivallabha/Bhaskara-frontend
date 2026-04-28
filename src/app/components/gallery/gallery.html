@@ -1,0 +1,54 @@
+<!-- 🔥 ADMIN UPLOAD -->
+<div *ngIf="isAdmin" class="upload-box">
+  <input type="file" (change)="onFileSelect($event)">
+  <button (click)="uploadImage()">Upload Image</button>
+</div>
+
+<section class="gallery-section">
+
+  <h2 class="title">Photo Gallery</h2>
+
+  <div class="gallery-grid">
+
+    <div class="gallery-item" *ngFor="let img of images">
+
+      <div class="img-wrapper">
+
+        <img 
+          [src]="'http://localhost:5000/uploads/' + img.image"
+          (click)="openImage('http://localhost:5000/uploads/' + img.image)"
+        >
+
+        <!-- 🔥 OVERLAY -->
+        <div class="overlay">
+
+          <!-- 🗑 DELETE ICON -->
+          <span 
+            *ngIf="isAdmin"
+            class="delete-icon"
+            (click)="deleteImage(img._id)">
+            🗑
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- 🔥 FULL SCREEN VIEW -->
+<div class="image-modal" *ngIf="selectedImage" (click)="closeImage()">
+
+  <span class="close-btn">❌</span>
+
+  <img 
+    [src]="selectedImage" 
+    class="full-image"
+    (click)="$event.stopPropagation()"
+  >
+
+</div>
