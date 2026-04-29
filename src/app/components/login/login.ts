@@ -31,7 +31,7 @@ export class Login implements OnInit {
   };
 
  login() {
-  axios.post('http://localhost:5000/api/auth/login', this.loginData)
+  axios.post('http://3.110.143.33:5000/api/auth/login', this.loginData)
     .then(res => {
 
       localStorage.setItem('token', res.data.token);

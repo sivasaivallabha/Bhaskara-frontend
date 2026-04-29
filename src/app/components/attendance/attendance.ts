@@ -39,7 +39,7 @@ export class Attendance {
 
     const params = new URLSearchParams(this.filters).toString();
 
-    axios.get(`http://localhost:5000/api/student/all?${params}`, {
+    axios.get(`http://3.110.143.33:5000/api/student/all?${params}`, {
       headers: { Authorization: token }
     })
     .then(res => {
@@ -61,7 +61,7 @@ export class Attendance {
     }));
 
     axios.post(
-      'http://localhost:5000/api/student/attendance/bulk',
+      'http://3.110.143.33:5000/api/student/attendance/bulk',
       {
         date: this.today,
         period: this.selectedPeriod,

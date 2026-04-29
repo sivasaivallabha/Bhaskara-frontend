@@ -25,7 +25,7 @@ deleteReview(id: string) {
 
   if (!confirm("Are you sure to delete this review?")) return;
 
-  axios.delete(`http://localhost:5000/api/reviews/${id}`, {
+  axios.delete(`http://3.110.143.33:5000/api/reviews/${id}`, {
     headers: {
       Authorization: localStorage.getItem('token')
     }
@@ -40,7 +40,7 @@ deleteReview(id: string) {
   });
 }
 getReviews() {
-  axios.get('http://localhost:5000/api/reviews')
+  axios.get('http://3.110.143.33:5000/api/reviews')
     .then(res => {
       this.reviews = res.data;
       this.cdr.detectChanges(); // 🔥 force UI update
@@ -149,7 +149,7 @@ getReviews() {
   };
 
   submitForm() {
-    axios.post('http://localhost:5000/api/apply', this.formData)
+    axios.post('http://3.110.143.33:5000/api/apply', this.formData)
       .then(() => {
         alert("Application sent successfully 📧");
         this.closeForm();
@@ -209,7 +209,7 @@ getReviews() {
     formData.append('image', this.newReview.image);
   }
 
-  axios.post('http://localhost:5000/api/reviews', formData)
+  axios.post('http://3.110.143.33:5000/api/reviews', formData)
     .then(res => {
 
       console.log("Saved Review:", res.data);
@@ -236,7 +236,7 @@ getReviews() {
 
 announcement: string = '';
 getAnnouncement() {
-  axios.get('http://localhost:5000/api/announcement/get')
+  axios.get('http://3.110.143.33:5000/api/announcement/get')
     .then(res => {
       this.announcement = res.data?.text || '';
       this.cdr.detectChanges();
