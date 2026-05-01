@@ -32,7 +32,7 @@ export class StudentDashboard implements OnInit {
   getStudentData() {
     const token = localStorage.getItem('token');
 
-    axios.get('http://3.110.143.33:5000/api/student/me', {
+    axios.get('http://13.234.108.120:5000/api/student/me', {
       headers: { Authorization: token }
     })
     .then(res => {

@@ -28,7 +28,7 @@ export class Gallery implements OnInit {
 
   // 🔥 GET IMAGES
   getImages() {
-    axios.get('http://3.110.143.33:5000/api/gallery')
+    axios.get('http://13.234.108.120:5000/api/gallery')
       .then(res => {
         this.images = res.data;
         this.cdr.detectChanges();
@@ -51,7 +51,7 @@ export class Gallery implements OnInit {
     const formData = new FormData();
     formData.append('image', this.selectedFile);
 
-    axios.post('http://3.110.143.33:5000/api/gallery', formData)
+    axios.post('http://13.234.108.120:5000/api/gallery', formData)
       .then(() => {
         alert("Uploaded ✅");
         this.getImages();
@@ -64,7 +64,7 @@ export class Gallery implements OnInit {
   deleteImage(id: string) {
     if (!confirm("Delete this image?")) return;
 
-    axios.delete(`http://3.110.143.33:5000/api/gallery/${id}`)
+    axios.delete(`http://13.234.108.120:5000/api/gallery/${id}`)
       .then(() => {
         alert("Deleted ✅");
         this.getImages();
