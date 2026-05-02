@@ -22,7 +22,7 @@ export class Register {
     const token = localStorage.getItem('token');
 
     axios.post(
-      'http://13.234.108.120:5000/api/auth/register',
+      'https://api.bhaskaraeducationalinstitutions.co.in/api/auth/register',
       this.userData,
       {
         headers: {

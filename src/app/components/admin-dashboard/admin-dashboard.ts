@@ -75,7 +75,7 @@ export class AdminDashboard implements OnInit {
       search: this.searchText
     }).toString();
 
-    axios.get(`http://13.234.108.120:5000/api/student/all?${params}`, {
+    axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/all?${params}`, {
       headers: { Authorization: token }
     })
       .then(res => {
@@ -152,7 +152,7 @@ export class AdminDashboard implements OnInit {
   deleteStudent(id: string) {
     const token = localStorage.getItem('token');
 
-    axios.delete(`http://13.234.108.120:5000/api/student/delete/${id}`, {
+    axios.delete(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/delete/${id}`, {
       headers: { Authorization: token }
     })
       .then(() => {
@@ -177,7 +177,7 @@ export class AdminDashboard implements OnInit {
   //   student.due = student.totalFees - (student.feesPaid || 0);
 
   //   axios.put(
-  //     `http://13.234.108.120:5000/api/student/update/${student._id}`,
+  //     `https://api.bhaskaraeducationalinstitutions.co.in/api/student/update/${student._id}`,
   //     student,
   //     { headers: { Authorization: token } }
   //   )
@@ -203,7 +203,7 @@ updateStudent(student: any) {
   student.due = student.totalFees - paid;
 
   axios.put(
-    `http://13.234.108.120:5000/api/student/update/${student._id}`,
+    `https://api.bhaskaraeducationalinstitutions.co.in/api/student/update/${student._id}`,
     student,
     { headers: { Authorization: token } }
   )
@@ -264,7 +264,7 @@ calculateFees(student: any) {
     formData.append('photo', file);
 
     axios.post(
-      `http://13.234.108.120:5000/api/student/upload/${student._id}`,
+      `https://api.bhaskaraeducationalinstitutions.co.in/api/student/upload/${student._id}`,
       formData
     ).then(() => {
       this.getStudents();
@@ -291,7 +291,7 @@ calculateFees(student: any) {
 
   // 📝 CREATE EXAM
   createExam() {
-    axios.post('http://13.234.108.120:5000/api/exam/create', this.newExam)
+    axios.post('https://api.bhaskaraeducationalinstitutions.co.in/api/exam/create', this.newExam)
       .then(() => {
         alert("Exam Created ✅");
         this.newExam = {
@@ -316,7 +316,7 @@ calculateFees(student: any) {
       return;
     }
 
-    axios.get(`http://13.234.108.120:5000/api/exam/all?class=${cls}&section=${section}&group=${group}`)
+    axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/exam/all?class=${cls}&section=${section}&group=${group}`)
       .then(res => {
 
         console.log("EXAMS:", res.data);
@@ -343,7 +343,7 @@ calculateFees(student: any) {
     }));
 
     axios.post(
-      `http://13.234.108.120:5000/api/exam/marks/${student._id}`, // ✅ FIXED
+      `https://api.bhaskaraeducationalinstitutions.co.in/api/exam/marks/${student._id}`, // ✅ FIXED
       {
         examId: this.selectedExam._id,
         examName: this.selectedExam.name,
@@ -374,7 +374,7 @@ calculateFees(student: any) {
     }));
 
     axios.post(
-      'http://13.234.108.120:5000/api/exam/marks/bulk',
+      'https://api.bhaskaraeducationalinstitutions.co.in/api/exam/marks/bulk',
       {
         examId: this.selectedExam._id,
         examName: this.selectedExam.name,
@@ -389,7 +389,7 @@ calculateFees(student: any) {
   announcementText: string = '';
   saveAnnouncement() {
 
-    axios.post('http://13.234.108.120:5000/api/announcement/save', {
+    axios.post('https://api.bhaskaraeducationalinstitutions.co.in/api/announcement/save', {
       text: this.announcementText
     })
       .then(() => {
@@ -409,7 +409,7 @@ calculateFees(student: any) {
   downloadFile(url: string, fileName: string) {
     const token = localStorage.getItem('token');
 
-    axios.get(`http://13.234.108.120:5000/api/student/${url}`, {
+    axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/${url}`, {
       headers: { Authorization: token },
       responseType: 'blob'
     })
@@ -437,7 +437,7 @@ calculateFees(student: any) {
       group: this.filters.group
     }).toString();
 
-    axios.get(`http://13.234.108.120:5000/api/student/exams/list?${params}`)
+    axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/exams/list?${params}`)
       .then(res => {
         this.examList = res.data;
       });
@@ -459,7 +459,7 @@ calculateFees(student: any) {
       examName: this.selectedExamName
     }).toString();
 
-    axios.get(`http://13.234.108.120:5000/api/student/download/exams?${params}`, {
+    axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/download/exams?${params}`, {
       headers: { Authorization: token },
       responseType: 'blob'
     })
@@ -489,7 +489,7 @@ calculateFees(student: any) {
     const token = localStorage.getItem('token'); // ✅ GET TOKEN
 
     axios.put(
-      `http://13.234.108.120:5000/api/auth/reset-password/${student._id}`,
+      `https://api.bhaskaraeducationalinstitutions.co.in/api/auth/reset-password/${student._id}`,
       { newPassword },
       {
         headers: { Authorization: token } // ✅ SEND TOKEN

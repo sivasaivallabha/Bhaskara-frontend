@@ -34,7 +34,7 @@ export class StaffDashboard implements OnInit {
 
   //   const params = new URLSearchParams(this.filters).toString();
 
-  //   axios.get(`http://13.234.108.120:5000/api/student/all?${params}`, {
+  //   axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/all?${params}`, {
   //     headers: { Authorization: token }
   //   })
   //   .then(res => {
@@ -47,7 +47,7 @@ export class StaffDashboard implements OnInit {
     const token = localStorage.getItem('token');
 
     axios.put(
-      `http://13.234.108.120:5000/api/student/update/${student._id}`,
+      `https://api.bhaskaraeducationalinstitutions.co.in/api/student/update/${student._id}`,
       { subjects: student.subjects }, // 🔥 ONLY SUBJECTS
       { headers: { Authorization: token } }
     )
@@ -64,7 +64,7 @@ getStudents() {
 
   const params = new URLSearchParams(this.filters).toString();
 
-  axios.get(`http://13.234.108.120:5000/api/student/all?${params}`, {
+  axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/all?${params}`, {
     headers: { Authorization: token }
   })
   .then(res => {

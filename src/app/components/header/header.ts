@@ -53,7 +53,7 @@ closeLogin() {
   this.showLogin = false;
 }
 login() {
-  axios.post('http://13.234.108.120:5000/api/auth/login', this.loginData)
+  axios.post('https://api.bhaskaraeducationalinstitutions.co.in/api/auth/login', this.loginData)
     .then(res => {
 
       localStorage.setItem('token', res.data.token);

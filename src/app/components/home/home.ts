@@ -25,7 +25,7 @@ deleteReview(id: string) {
 
   if (!confirm("Are you sure to delete this review?")) return;
 
-  axios.delete(`http://13.234.108.120:5000/api/reviews/${id}`, {
+  axios.delete(`https://api.bhaskaraeducationalinstitutions.co.in/api/reviews/${id}`, {
     headers: {
       Authorization: localStorage.getItem('token')
     }
@@ -40,7 +40,7 @@ deleteReview(id: string) {
   });
 }
 getReviews() {
-  axios.get('http://13.234.108.120:5000/api/reviews')
+  axios.get('https://api.bhaskaraeducationalinstitutions.co.in/api/reviews')
     .then(res => {
       this.reviews = res.data;
       this.cdr.detectChanges(); // 🔥 force UI update
@@ -149,7 +149,7 @@ getReviews() {
   };
 
   submitForm() {
-    axios.post('http://13.234.108.120:5000/api/apply', this.formData)
+    axios.post('https://api.bhaskaraeducationalinstitutions.co.in/api/apply', this.formData)
       .then(() => {
         alert("Application sent successfully 📧");
         this.closeForm();
@@ -209,7 +209,7 @@ getReviews() {
     formData.append('image', this.newReview.image);
   }
 
-  axios.post('http://13.234.108.120:5000/api/reviews', formData)
+  axios.post('https://api.bhaskaraeducationalinstitutions.co.in/api/reviews', formData)
     .then(res => {
 
       console.log("Saved Review:", res.data);
@@ -236,7 +236,7 @@ getReviews() {
 
 announcement: string = '';
 getAnnouncement() {
-  axios.get('http://13.234.108.120:5000/api/announcement/get')
+  axios.get('https://api.bhaskaraeducationalinstitutions.co.in/api/announcement/get')
     .then(res => {
       this.announcement = res.data?.text || '';
       this.cdr.detectChanges();

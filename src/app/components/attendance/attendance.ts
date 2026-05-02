@@ -39,7 +39,7 @@ export class Attendance {
 
     const params = new URLSearchParams(this.filters).toString();
 
-    axios.get(`http://13.234.108.120:5000/api/student/all?${params}`, {
+    axios.get(`https://api.bhaskaraeducationalinstitutions.co.in/api/student/all?${params}`, {
       headers: { Authorization: token }
     })
     .then(res => {
@@ -61,7 +61,7 @@ export class Attendance {
     }));
 
     axios.post(
-      'http://13.234.108.120:5000/api/student/attendance/bulk',
+      'https://api.bhaskaraeducationalinstitutions.co.in/api/student/attendance/bulk',
       {
         date: this.today,
         period: this.selectedPeriod,
