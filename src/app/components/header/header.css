@@ -45,16 +45,21 @@
 
 
 /* ================= LOGO ================= */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.main-logo{
+  height:75px;
+  width:auto;
+  object-fit:contain;
 }
 
-.logo img {
-  height: 70px;
-  width: auto;
-  object-fit: contain;
+/* RIGHT QUOTE IMAGE */
+.quote-img{
+  height:80px;
+  width:auto;
+  max-width:100%;
+
+  object-fit:contain;   /* ✅ prevents cutting */
+
+  display:block;
 }
 
 
@@ -208,90 +213,137 @@ nav a:hover {
 @media (max-width: 768px) {
 
   /* TOP BAR */
-  .top-bar {
-    font-size: 11px;
-    padding: 5px 10px;
+  .top-bar{
+    padding: 6px 10px;
+    font-size: 9px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+  }
+
+  .top-bar .left{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 85%;
   }
 
   /* NAVBAR */
-  .navbar {
-    padding: 8px 12px;
+  .navbar{
+    padding: 6px 10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
   }
 
-  /* LOGO */
-  .logo img {
-    height: 45px;
+  /* LEFT LOGO */
+  .main-logo{
+    height:22px;
+    max-width:120px;
+    object-fit:contain;
+  }
+
+  /* RIGHT QUOTE IMAGE */
+  .quote-img{
+    height:32px;
+    width:auto;
+    max-width:270px;
+    object-fit:contain;
+    margin-right: 10px;
   }
 
   /* HAMBURGER */
-  .menu-icon {
-    display: block;
-    margin-left: auto;
+  .menu-icon{
+    display:block;
+    font-size:24px;
+    margin-left:auto;
   }
 
   /* NAV MENU */
-  nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+  nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:white;
 
-    background: white;
+    display:none;
+    flex-direction:column;
 
-    display: none;
-    flex-direction: column;
-
-    border-top: 1px solid #eee;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-top:1px solid #eee;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
   }
 
-  nav.active {
-    display: flex;
+  nav.active{
+    display:flex;
   }
 
-  /* LINKS */
-  nav a {
-    padding: 14px;
-    border-bottom: 1px solid #f1f1f1;
-    font-size: 14px;
+  nav a{
+    padding:14px;
+    border-bottom:1px solid #f1f1f1;
+    font-size:14px;
   }
 
   /* DROPDOWN */
-  .dropdown {
-    width: 100%;
+  .dropdown{
+    width:100%;
   }
 
-  .dropdown-content {
-    position: static;
-    display: none;
-    background: #f9fafb;
+  .dropdown-content{
+    position:static;
+    display:none;
+    background:#f9fafb;
   }
 
-  .dropdown.active .dropdown-content {
-    display: block;
+  .dropdown.active .dropdown-content{
+    display:block;
   }
 
-  .dropdown-content a {
-    padding-left: 25px;
-    font-size: 13px;
+  .dropdown-content a{
+    padding-left:25px;
+    font-size:13px;
   }
 
   /* MODAL */
-  .modal-content {
-    width: 95%;
-    padding: 20px;
-    max-height: 85vh;
-    overflow-y: auto;
+  .modal-content{
+    width:88%;
+    padding:14px;
+    max-height:80vh;
+    overflow-y:auto;
+    border-radius:12px;
   }
 
-  /* MODAL CARDS */
-  .card-container {
-    flex-direction: column;
-    align-items: center;
+  .modal-image img{
+    max-width:140px;
+    max-height:140px;
   }
 
-  .card {
-    width: 100%;
+  .card-container{
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+
+  .card{
+    width:92%;
+    padding:16px;
+  }
+
+  .card h3{
+    font-size:20px;
+  }
+
+  .card p{
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .close{
+    font-size:18px;
+    top:8px;
+    right:10px;
   }
 }
 
@@ -299,9 +351,6 @@ nav a:hover {
 /* ================= SMALL MOBILE ================= */
 @media (max-width: 480px) {
 
-  .logo img {
-    height: 38px;
-  }
 
   nav a {
     font-size: 13px;
@@ -316,4 +365,29 @@ nav a:hover {
 /* ================= PREVENT CONTENT OVERLAP ================= */
 body {
   padding-top: 110px; /* 🔥 IMPORTANT */
+}
+
+.modal-image{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.modal-image{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-image img{
+  max-width: 220px;
+  max-height: 220px;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;   /* ✅ important */
+
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  background: white;
+  padding: 5px;
 }

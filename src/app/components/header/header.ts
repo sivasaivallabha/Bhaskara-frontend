@@ -149,4 +149,22 @@ toggleMenu() {
 closeMenu() {
   this.menuOpen = false;
 }
+
+
+getModalImage(): string {
+
+  if (this.modalType === 'about') {
+    return 'assets/logo99.jpeg';
+  }
+
+  if (this.modalType === 'head1') {
+    return 'assets/head1.jpeg';
+  }
+
+  if (this.modalType === 'head2') {
+    return 'assets/head2.jpeg';
+  }
+
+  return '';
+}
 }

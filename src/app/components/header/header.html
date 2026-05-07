@@ -4,7 +4,7 @@
   <!-- TOP BAR -->
   <div class="top-bar">
     <div class="left">
-      📞 +91 94939 43737 | ✉️ bjcnsp@gmail.com
+      📞 9493943737| ✉️ info@bhaskaraeducationalinstitutions.co.in
     </div>
 
     <!-- HAMBURGER -->
@@ -44,25 +44,34 @@
 
   <!-- NAVBAR -->
   <header class="navbar">
-    <div class="logo">
-      <img src="assets/name.png">
-    </div>
-    <div class="logo">
-      <img src="assets/quote.jpeg">
-    </div>
-  </header>
+
+  <div class="logo">
+    <img src="assets/newlogo.png" class="main-logo">
+  </div>
+
+  <div class="quote-logo">
+    <img src="assets/quote.jpeg" class="quote-img">
+  </div>
+
+</header>
 
 </div>
 
+<!-- MODAL -->
 <!-- MODAL -->
 <div class="modal" *ngIf="showModal">
   <div class="modal-content">
 
     <span class="close" (click)="closeModal()">❌</span>
 
-    <h2 class="modal-title">
+    <!-- IMAGE -->
+    <div class="modal-image">
+      <img [src]="getModalImage()" alt="">
+    </div>
+
+    <!-- <h2 class="modal-title">
       {{ modalType | uppercase }}
-    </h2>
+    </h2> -->
 
     <div class="card-container">
       <div class="card" *ngFor="let item of getModalData()">
